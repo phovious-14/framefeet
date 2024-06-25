@@ -1,17 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    webpack: config => {
-        config.externals.push('pino-pretty', 'lokijs', 'encoding')
-        return config
+  webpack: config => {
+    config.externals.push('pino-pretty', 'lokijs', 'encoding')
+    return config
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
       },
-      images: {
-        remotePatterns: [
-          {
-            protocol: "https",
-            hostname: "**",
-          },
-        ]
-      },
+    ]
+  },
+  distDir: 'build',
 };
 
 export default nextConfig;

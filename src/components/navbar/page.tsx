@@ -5,7 +5,7 @@ import Image from "next/image";
 import '@coinbase/onchainkit/styles.css';
 import Link from "next/link";
 import { useAccount, useDisconnect } from 'wagmi';
-import { Avatar, Name } from '@coinbase/onchainkit/identity';
+import { Name } from '@coinbase/onchainkit/identity';
 
 export default function Navbar() {
     const { address, status } = useAccount();

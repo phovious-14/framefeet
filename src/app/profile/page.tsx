@@ -3,7 +3,6 @@ import Navbar from "@/components/navbar/page";
 import { Avatar, Name } from "@coinbase/onchainkit/identity";
 import { useAccount } from "wagmi";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from "react";

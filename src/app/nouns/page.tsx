@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import Navbar from "../components/navbar/page";
+import Navbar from "../../components/navbar/page";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from "react";
@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import store from '../store'
+import store from '../../store'
 import Link from "next/link";
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -37,19 +37,16 @@ export default function Home() {
 
       <div className="p-[2px] w-[99%] h-full mt-[97px] bg-black">
         <div className="bg-white rounded-xl flex justify-around items-center flex-row p-12 px-24">
-          <div className="text-black uppercase inria-serif-regular flex justify-start items-start flex-col">
-            <h1 className="text-[5rem] leading-[80px]">Step <br />in style</h1>
-            <button className="text-black bg-purple-400 rounded-full text-xl p-2 px-6 mt-12">
-              But Now
-            </button>
+          <div className="text-black inria-serif-regular flex justify-start items-start flex-col">
+            <h1 className="text-[3rem] leading-[80px]">Customize And<br />Order 3D Printed Nouns</h1>
           </div>
-          <Image src={require('../../public/Arrow.svg')} alt="" className="w-48 h-full absolute -mt-[270px] rotate-[-10deg] -ml-48" />
+          <Image src={require('../../../public/Arrow.svg')} alt="" className="w-48 h-full absolute -mt-[270px] rotate-[-10deg] -ml-32" />
           <div>
-            <div className="border-2 sub-border-1 absolute border-black mt-6 ml-6 z-10 rounded-lg bg-red-100">
-              <Image src={require("../../public/shoe1.png")} alt="" className="w-[25rem] h-auto opacity-0" />
+            <div className="border-2 sub-border-1 absolute border-black mt-6 ml-6 z-10 rounded-lg bg-blue-700">
+              <Image src="https://noun.pics/14.jpg" alt="" width={200} height={200} className="w-[25rem] h-auto opacity-0" />
             </div>
             <div className="border-[3px] rounded-lg relative border-black sub-border-1 bg-white z-20">
-              <Image src={require("../../public/shoe1.png")} alt="" className="w-[25rem] h-auto" />
+            <Image src="https://noun.pics/14.jpg" alt="" width={200} height={200} className="w-[25rem] h-auto" />
             </div>
           </div>
         </div>

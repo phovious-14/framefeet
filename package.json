@@ -9,20 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@coinbase/onchainkit": "^0.22.1",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fleek-platform/cli": "^2.8.6",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@mui/material-nextjs": "^5.15.11",
-    "@tanstack/react-query": "^5.45.1",
+    "@neynar/react": "^0.4.7",
+    "@tanstack/react-query": "^5.48.0",
+    "@web3modal/wagmi": "^5.0.3",
+    "axios": "^1.7.2",
+    "frog": "^0.12.1",
+    "hono": "^4.4.9",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.4",
-    "viem": "^2.16.1",
-    "wagmi": "^2.10.4"
+    "viem": "^2.16.2",
+    "wagmi": "^2.10.7"
   },
   "devDependencies": {
     "@types/node": "^20",

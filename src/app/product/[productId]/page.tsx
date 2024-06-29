@@ -1,8 +1,11 @@
 "use client"
+
 import Navbar from "@/components/navbar/page"
 import store from "@/store"
 import Image from "next/image"
 import { useState } from "react"
+import { useAccount, useReadContract } from "wagmi"
+import { base_sepolia_storage } from "../../../../base_sepolia_storage"
 
 type IProduct = {
     id: number,
@@ -10,20 +13,75 @@ type IProduct = {
     glb: string,
     name: string,
     inr: string,
-    eth: string
+    usdc: string
 }
 
 export default function Page({ params }: number | any) {
 
     const [product, setProduct] = useState<IProduct[]>(store.filter(item => item.id == params.productId))
     const [counter, setCounter] = useState<number>(1)
+    const { address } = useAccount()
+    const result = useReadContract({
+        abi: base_sepolia_storage,
+        address: "0xc232b61eefaE6933E77E681e056FF268e39De3a3",
+        functionName: 'getAddrOf',
+        args: [address]
+      })
+
+    const url = 'https://api.commerce.coinbase.com/charges';
+
+    const requestBody = {
+        local_price: {
+            amount: Number(product[0].usdc) * counter, //price of charge
+            currency: 'USD', //currency
+        },
+        pricing_type: 'fixed_price',
+
+        name: product[0].name,
+        description: 'Shoe',
+        redirect_url: 'http://localhost:3000/payment-reciept', //optional redirect URL
+
+        metadata: { //optional charge metadata
+            product_id: product[0].id,
+            product_img: product[0].image,
+            wallet_address: address,
+            address: result?.data,
+            qty: counter,
+            total: Number(product[0].usdc) * counter
+        },
+    };
+
+    const payload: any = {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'X-CC-Api-Key': "73d2658d-6e70-4500-b555-3274c499f73f",//API key from Commerce
+        },
+        body: JSON.stringify(requestBody),
+    };
+
+    async function createCharge() {
+        try {
+            const response = await fetch(url, payload);
+            if (!response.ok) {
+                throw new Error(`HTTP error Status: ${response.status}`);
+            }
+            const res = await response.json()
+            localStorage.setItem("chargeData", JSON.stringify(res.data))
+            window.location.href = res.data.hosted_url
+        } catch (error) {
+            console.error("Error creating charge:", error);
+        }
+    }
 
     const incCounter = () => {
-        setCounter(prev => prev+1)
+        setCounter(prev => prev + 1)
     }
 
     const decCounter = () => {
-        if(counter == 1) return
+        if (counter == 1) return
         setCounter(prev => prev - 1)
     }
 
@@ -58,8 +116,8 @@ export default function Page({ params }: number | any) {
                         <button className="bg-yellow-200 text-lg font-bold text-black p-1 border border-black w-[100px] rounded-lg">Buy</button>
                     </div>
                     <div className="flex w-full justify-between items-center my-4">
-                        <h1 className="text-slate-900 text-2xl flex justify-start items-center flex-row"><Image src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/info/logo.png" alt="" width={"30"} height={"30"} className="mr-2" />{(Number(product[0].eth) * counter).toFixed(3)} ETH</h1>
-                        <button className="bg-indigo-300 text-lg font-bold text-black p-1 border border-black w-[100px] rounded-lg">Buy</button>
+                        <h1 className="text-slate-900 text-2xl flex justify-start items-center flex-row"><Image src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/info/logo.png" alt="" width={"30"} height={"30"} className="mr-2" />{(Number(product[0].usdc) * counter).toFixed(3)} usdc</h1>
+                        <button className="bg-indigo-300 text-lg font-bold text-black p-1 border border-black w-[100px] rounded-lg" onClick={createCharge}>Buy</button>
                     </div>
                 </div>
             </div>

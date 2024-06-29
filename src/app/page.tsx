@@ -1,5 +1,6 @@
-"use client"
 
+import { getFrameMetadata } from 'frog/next'
+import type { Metadata } from 'next'
 import Image from "next/image";
 import Navbar from "../components/navbar/page";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -7,7 +8,48 @@ import store from '../store';
 import Link from "next/link";
 import SearchIcon from '@mui/icons-material/Search';
 
+export async function generateMetadata(): Promise<Metadata> {
+  const frameTags = await getFrameMetadata(
+    `${process.env.VERCEL_URL || 'http://localhost:3000'}/api`,
+  )
+  return {
+    other: frameTags,
+  }
+}
+
 export default function Home() {
+
+  
+  
+// const url = 'https://api.commerce.coinbase.com/charges';
+
+// const requestBody = {
+//    local_price: {
+//      amount: '0.01', //price of charge
+//      currency: 'USD', //currency
+//   },
+//   pricing_type: 'fixed_price',
+ 
+//  name: 'Name of the charge',
+//   description: 'Small description',
+//   redirect_url: 'http://localhost:3000/profile', //optional redirect URL
+
+//    metadata: { //optional charge metadata
+//      id: 'Customer id',
+//      address: '123 Satoshi Lane',
+//    },
+// };
+
+// const payload:any = {
+//   musdcod: 'POST',
+//   mode: 'cors',
+//   headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json',
+//     'X-CC-Api-Key': "73d2658d-6e70-4500-b555-3274c499f73f",//API key from Commerce
+//   },
+//   body: JSON.stringify(requestBody),
+// };
 
   return (
     <div className="min-h-screen bg-white w-screen p-2">
@@ -38,8 +80,8 @@ export default function Home() {
           <div className="flex justify-between items-center">
             <p className="text-black text-[50px] ">Premium Quality Selection</p>
             <div>
-            <input type="text" className="border-2 p-2 px-4 border-black text-black text-2xl" />
-            <SearchIcon className="text-black absolute right-28 mt-3" />
+              <input type="text" className="border-2 p-2 px-4 border-black text-black text-2xl" />
+              <SearchIcon className="text-black absolute right-28 mt-3" />
             </div>
           </div>
           <div className="mt-12 w-full flex justify-start items-center flex-wrap">
@@ -58,7 +100,7 @@ export default function Home() {
                     |
                     <div className="flex justify-between items-center flex-row">
                       <Image src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/info/logo.png" alt="" width={"20"} height={"20"} />
-                      <h1 className="ml-2">{item.eth} ETH</h1>
+                      <h1 className="ml-2">{item.usdc} USDC</h1>
                     </div>
                   </div>
                 </div>

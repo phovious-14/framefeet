@@ -33,7 +33,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "build/types/**/*.ts"
-, "src/app/api/[[...routes]]/route.jsx", "src/app/your-orders/page.jsx"  ],
+, "src/app/api/[[...routes]]/route.jsx", "src/app/your-orders/page.jsx", "src/app/profile/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

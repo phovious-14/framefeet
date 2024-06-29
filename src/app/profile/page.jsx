@@ -14,7 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Button } from "@mui/material";
 
 const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -42,7 +42,7 @@ export default function Profile() {
         args: [address]
       })
     
-      const handleCloseSnackbar = (event: React.SyntheticEvent | Event, reason?: string) => {
+      const handleCloseSnackbar = () => {
         if (reason === 'clickaway') {
           return;
         }

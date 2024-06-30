@@ -39,7 +39,7 @@ export default function Page({ params }: number | any) {
 
         name: product[0].name,
         description: 'Shoe',
-        redirect_url: 'http://localhost:3000/payment-reciept', //optional redirect URL
+        redirect_url: 'https://framefeet.vercel.app/payment-reciept', //optional redirect URL
 
         metadata: { //optional charge metadata
             product_id: product[0].id,

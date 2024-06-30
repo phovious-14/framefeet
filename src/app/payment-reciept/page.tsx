@@ -157,7 +157,7 @@ export default function Page() {
                     <a href={`https://basescan.org/tx/${recieptData?.web3_data.success_events[0].tx_hsh}`} className="text-blue-500">Transaction Hash <OpenInNewIcon className="text-blue-500 text-sm" fontSize="small" /></a>
                 </div>
 
-                <a href="http://localhost:3000" className="bg-blue-800 text-white rounded-full p-2 text-lg w-1/2 mt-8 mb-4 text-center border-2 hover:bg-white hover:text-black transition-all border-blue-800">Go To Home Page</a>
+                <a href="https://framefeet.vercel.app" className="bg-blue-800 text-white rounded-full p-2 text-lg w-1/2 mt-8 mb-4 text-center border-2 hover:bg-white hover:text-black transition-all border-blue-800">Go To Home Page</a>
 
             </div>
 

@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export async function generateMetadata(): Promise<Metadata> {
   const frameTags = await getFrameMetadata(
-    `${process.env.VERCEL_URL || 'http://localhost:3000'}/api`,
+    `${process.env.VERCEL_URL || 'https://framefeet.vercel.app'}/api`,
   )
   return {
     other: frameTags,
@@ -32,7 +32,7 @@ export default function Home() {
  
 //  name: 'Name of the charge',
 //   description: 'Small description',
-//   redirect_url: 'http://localhost:3000/profile', //optional redirect URL
+//   redirect_url: 'https://framefeet.vercel.app/profile', //optional redirect URL
 
 //    metadata: { //optional charge metadata
 //      id: 'Customer id',

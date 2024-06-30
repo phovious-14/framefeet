@@ -35,7 +35,7 @@ export default function Profile() {
         args: [address]
     })
     const copylink = (id) => {
-        navigator.clipboard.writeText(`http://localhost:3000/api/${Number(id)}`)
+        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/${Number(id)}`)
     }
 
     return <div className="w-screen bg-white pb-6">

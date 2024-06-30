@@ -11,6 +11,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from "next/image";
+import NextCrypto from 'next-crypto';
 
 const style = {
     position: 'absolute',
@@ -35,7 +36,9 @@ export default function Profile() {
         args: [address]
     })
     const copylink = (id) => {
-        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/${Number(id)}`)
+        const crypto = new NextCrypto('qwerty');
+        let wallet = crypto.encrypt(address)
+        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/${Number(id)}/${wallet}`)
     }
 
     return <div className="w-screen bg-white pb-6">

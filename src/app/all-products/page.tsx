@@ -7,10 +7,6 @@ import { useAccount } from "wagmi"
 import Image from "next/image"
 import store from '../../store'
 import SearchIcon from '@mui/icons-material/Search'
-import { useState } from "react"
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Modal from '@mui/material/Modal'
 
 const style = {
     position: 'absolute',
@@ -28,17 +24,12 @@ const style = {
 export default function Page() {
 
     const { address } = useAccount()
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [open, setOpen] = useState(false);
-    const [msg, setMsg] = useState("");
-    const [id, setId] = useState(0);
 
     if(address != "0xF13cc670E528cD7c6fDC9420f39D725E9375F98A") window.location.href = "https://framefeet.vercel.app"
 
-    const handlePromote = () => {
-        console.log(id, msg);
-        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/promote/${id}/${JSON.stringify(msg)}`)        
+    const handlePromote = (id: any) => {
+        console.log(id);
+        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/promote/${id}`)        
     }
 
     return  <div className="min-h-screen bg-white w-screen p-2">
@@ -60,8 +51,7 @@ export default function Page() {
                   <Image src={item.image} alt="" className="w-[15rem] h-auto" width={"240"} height={"240"} />
                   <p className="text-black p-2 text-center w-[240px] font-bold text-base border-t-2 border-black">{item.name}</p>
                   <button onClick={() => {
-                    handleOpen()
-                    setId(item.id)
+                    handlePromote(item.id)
                   }} className="font-bold text-center uppercase m-4 mr-2 bg-orange-400 p-2 w-[95%] ml-2 rounded-full text-white ">Promote</button>
                   <div className="text-black p-2 text-lg w-full border-t-2 border-black flex justify-around items-center">
                     <h1>₹ {item.inr}</h1>
@@ -79,23 +69,5 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-
-        >
-            <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2" className="text-black">
-                    Add messege for promotion
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }} className="text-black text-base">
-                    <textarea className="border-2 p-2 px-4 border-black text-black text-base w-full" onChange={(e) => setMsg(e.target.value)}></textarea>
-                    <button onClick={handlePromote} className="bg-black text-white w-full p-2 mt-2 border border-black hover:text-black hover:bg-white transition-all">Create & Copy Frame</button>
-                </Typography>
-            </Box>
-        </Modal>
-
     </div>
 }

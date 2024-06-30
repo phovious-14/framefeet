@@ -23,11 +23,10 @@ const app = new Frog({
 // Uncomment to use Edge Runtime
 // export const runtime = 'edge'
 
-app.frame('/promote/:id/:msg', (c) => {
+app.frame('/promote/:id', (c) => {
   const { buttonValue, inputText, status } = c
 
   const id = c.req.param("id")
-  const msg = c.req.param("msg")
   const url = `https://framefeet.vercel.app/product/${id}`
   const product = store.filter(item => item.id == id)
   return c.res({
@@ -37,7 +36,7 @@ app.frame('/promote/:id/:msg', (c) => {
     }}
     >
       <Image src={product[0]?.image} alt="" height="100%" objectFit='cover' />
-      {JSON.parse(msg)}
+      Brand new Sneaker launched! 🔥
     </div>,
     intents: [
       <Button.Link href={url}>But now</Button.Link>

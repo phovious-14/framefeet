@@ -23,15 +23,16 @@ const app = new Frog({
 // export const runtime = 'edge'
 
 app.frame('/:id', (c) => {
+
     
   const { buttonValue, inputText, status, frameData } = c
 
   const data = c.req.raw.url.split("/")
   let id = data[data.length-1]
-  const product = store.filter(item => item.id == id)
-  console.log(product[0]);
 
-  const msg = ` hello ppl, just bought brand new 🤩 ${product[0].name} worth $${product[0].usdc} USDC`
+  const product = store.filter(item => item.id == id)
+
+  const msg = ` hello ppl, just bought brand new 🤩 ${product[0].name} worth $${frameData.address} USDC`
 
   return c.res({
     image: (<div style={{display:"flex", justifyContent:"space-between", alignItems:"center", 

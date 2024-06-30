@@ -39,7 +39,7 @@ export default function Profile() {
         const crypto = new NextCrypto('qwerty');
         let wallet = await crypto.encrypt(address)
         console.log(wallet);
-        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/${Number(id)}/${wallet}`)
+        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/${Number(id)}/${JSON.stringify(wallet)}`)
     }
 
     return <div className="w-screen bg-white pb-6">

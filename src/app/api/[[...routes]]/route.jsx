@@ -27,25 +27,19 @@ app.frame('/:id/:wallet', async (c) => {
 
     
   const { buttonValue, inputText, status, frameData } = c
+  const crypto = new NextCrypto('qwerty');
 
   let id = c.req.param("id")
-  const crypto = new NextCrypto('qwerty');
-  let wallet = await crypto.decrypt(c.req.param("wallet"))
-
+  let wallet = await crypto.decrypt(JSON.parse(c.req.param("wallet")))
 
   const product = store.filter(item => item.id == id)
 
-  if(wallet != frameData.address) {
-    return c.res({
-      image: <Image src={product[0].image} alt="" height="100%" objectFit='cover' />
-    })
-  }
-  const msg = ` hello ppl, just bought brand new 🤩 ${product[0].name} worth $${frameData.address} USDC`
+  const msg = ` hello ppl, just bought brand new 🤩 ${product[0]?.name} worth $${frameData?.address} USDC`
 
   return c.res({
     image: (<div style={{display:"flex", justifyContent:"space-between", alignItems:"center", 
     backgroundImage: 'linear-gradient(to bottom, #dbf4ff, #fff1f1)',}}>
-      <Image src={product[0].image} alt="" height="100%" objectFit='cover' />
+      <Image src={product[0]?.image} alt="" height="100%" objectFit='cover' />
       <div style={{
         backgroundImage: 'linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))',
         backgroundClip: 'text',

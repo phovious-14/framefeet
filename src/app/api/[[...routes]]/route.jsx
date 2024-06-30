@@ -29,7 +29,7 @@ app.frame('/:id/:wallet', async (c) => {
   const { buttonValue, inputText, status, frameData } = c
 
   const data = c.req.raw.url.split("/")
-  let id = data[data.length-2]
+  let id = data[data.length-3]
 
   const crypto = new NextCrypto('qwerty');
   let wallet = await crypto.decrypt(data[data.length-1])

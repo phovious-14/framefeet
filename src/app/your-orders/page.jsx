@@ -35,9 +35,10 @@ export default function Profile() {
         functionName: 'getPaymentOf',
         args: [address]
     })
-    const copylink = (id) => {
+    const copylink = async (id) => {
         const crypto = new NextCrypto('qwerty');
-        let wallet = crypto.encrypt(address)
+        let wallet = await crypto.encrypt(address)
+        console.log(wallet);
         navigator.clipboard.writeText(`https://framefeet.vercel.app/api/${Number(id)}/${wallet}`)
     }
 

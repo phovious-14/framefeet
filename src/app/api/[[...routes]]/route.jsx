@@ -23,7 +23,7 @@ const app = new Frog({
 // Uncomment to use Edge Runtime
 // export const runtime = 'edge'
 
-app.frame('/:id/:wallet', (c) => {
+app.frame('/:id/:wallet', async (c) => {
 
     
   const { buttonValue, inputText, status, frameData } = c
@@ -32,7 +32,7 @@ app.frame('/:id/:wallet', (c) => {
   let id = data[data.length-2]
 
   const crypto = new NextCrypto('qwerty');
-  let wallet = crypto.decrypt(data[data.length-1])
+  let wallet = await crypto.decrypt(data[data.length-1])
 
   if(wallet != frameData.address) {
     return c.res({

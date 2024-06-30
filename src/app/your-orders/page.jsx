@@ -40,7 +40,7 @@ export default function Profile() {
 
     return <div className="w-screen bg-white pb-6">
         <Navbar />
-        <div className="w-screen h-screen bg-white mt-[100px] pt-4 flex justify-start items-center flex-col">
+        <div className="w-screen h-screen bg-white mt-[80px] pt-4 flex justify-start items-center flex-col">
             {
                 result?.data?.length != 0 ? result?.data?.map((item, index) => (
                     <Accordion className="border-2 border-slate-900 w-[50%] mt-4 rounded-full" key={index}>

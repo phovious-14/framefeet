@@ -3,11 +3,10 @@ import Navbar from "@/components/navbar/page";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import {base_sepolia_storage} from "../../../base_sepolia_storage"
+import { base_sepolia_storage } from "../../../base_sepolia_storage";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
-import { baseSepolia } from "viem/chains";
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -32,7 +31,7 @@ export default function Profile() {
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const {address} = useAccount()
     const handleOpen = () => setOpen(true);
-    const [addr, setAddr] = useState<string>("")
+    const [addr, setAddr] = useState("")
     const handleClose = () => setOpen(false);
     const { writeContract, data, isPending, isSuccess, isError, error  } = useWriteContract()
     const result = useReadContract({
@@ -84,7 +83,7 @@ export default function Profile() {
 
     return <div className="w-screen bg-white ">
         <Navbar />
-        <div className="w-screen h-screen bg-white mt-[100px] pt-4 flex justify-start items-center flex-col">
+        <div className="w-screen h-screen bg-white mt-[80px] pt-4 flex justify-start items-center flex-col">
             <div className="flex justify-between items-center flex-row w-[60%]">
 
 

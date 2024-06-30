@@ -36,7 +36,12 @@ app.frame('/promote/:id', (c) => {
     }}
     >
       <Image src={product[0]?.image} alt="" height="100%" objectFit='cover' />
-      Brand new Sneaker <br />launched! 🔥
+      <div style={{
+        color: 'black',
+        fontSize: 60
+      }}>
+        Brand new Sneaker launched! 🔥
+      </div>
     </div>,
     intents: [
       <Button.Link href={url}>But now</Button.Link>

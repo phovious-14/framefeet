@@ -23,18 +23,39 @@ const app = new Frog({
 // Uncomment to use Edge Runtime
 // export const runtime = 'edge'
 
-app.frame('/:id/:wallet', async (c) => {
+app.frame("/" ,(c) => {
+  return c.res({
+    image: <div style={{color:"white"}}>hi</div>
+  })
+})
 
+app.frame('/share/:id', async (c) => {
     
   const { buttonValue, inputText, status, frameData } = c
-  const crypto = new NextCrypto('qwerty');
 
   let id = c.req.param("id")
-  let wallet = await crypto.decrypt(JSON.parse(c.req.param("wallet")))
 
-  const product = store.filter(item => item.id == id)
+  const url = `https://api.commerce.coinbase.com/charges/${id}`;
+    const payload = {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'X-CC-Api-Key': "73d2658d-6e70-4500-b555-3274c499f73f",//API key from Commerce
+        }
+    };
 
-  const msg = ` hello ppl, just bought brand new 🤩 ${product[0]?.name} worth $${frameData?.address} USDC`
+    const response = await fetch(url, payload);
+            if (!response.ok) {
+                throw new Error(`HTTP error Status: ${response.status}`);
+            }
+            const res = await response.json()
+            console.log(res.data.metadata.cust_name);
+
+  const product = store.filter(item => item.id == res?.data?.metadata?.product_id)
+
+  const msg = `hello ppl, ${frameData?.address} ${res?.data?.metadata?.cust_name} just bought brand new 🤩 ${product[0]?.name}`
 
   return c.res({
     image: (<div style={{display:"flex", justifyContent:"space-between", alignItems:"center", 

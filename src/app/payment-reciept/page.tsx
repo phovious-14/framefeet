@@ -56,13 +56,13 @@ export default function Page() {
 
     const save = () => {
         console.log('clicked');
-        console.log([recieptData?.metadata.product_img, recieptData?.metadata.qty, recieptData?.metadata.total, recieptData?.payments[0].detected_at, recieptData?.payments[0].network, recieptData?.metadata.address, recieptData?.web3_data.success_events[0].tx_hsh]);
+        console.log([JSON.parse(chargeData).id, recieptData?.metadata.product_img, recieptData?.metadata.qty, recieptData?.metadata.total, recieptData?.payments[0].detected_at, recieptData?.payments[0].network, recieptData?.metadata.address, recieptData?.web3_data.success_events[0].tx_hsh]);
         
         writeContract({ 
             abi: base_sepolia_storage,
-            address: '0xc232b61eefaE6933E77E681e056FF268e39De3a3',
+            address: '0x93Fc58B6A8BA282d339e6e34164488b3537401cC',
             functionName: 'addPaymentReceipt',
-            args: [recieptData?.metadata.product_id, recieptData?.name, recieptData?.metadata.product_img, recieptData?.metadata.qty, recieptData?.metadata.total, recieptData?.payments[0].detected_at, recieptData?.payments[0].network, address, recieptData?.metadata.address, recieptData?.web3_data.success_events[0].tx_hsh],
+            args: [JSON.parse(chargeData).id, recieptData?.metadata.product_id, recieptData?.name, recieptData?.metadata.product_img, recieptData?.metadata.qty, recieptData?.metadata.total, recieptData?.payments[0].detected_at, recieptData?.payments[0].network, address, recieptData?.metadata.address, recieptData?.web3_data.success_events[0].tx_hsh],
             chainId: 84532
          })
          
@@ -124,6 +124,10 @@ export default function Page() {
                 <div className="w-full flex justify-between items-center flex-row mt-6 mb-2 text-">
                     <Image src={recieptData?.metadata.product_img} alt="" width={100} height={100} className="border border-slate-400 rounded-md"/>
                     <h1 className="text-slate-700">{recieptData?.name}</h1>
+                </div>
+                <div className="w-full flex justify-between items-center flex-row my-2">
+                    <h1 className="text-slate-500">Customer Name</h1>
+                    <h1 className="text-slate-700">{recieptData?.metadata?.cust_name}</h1>
                 </div>
                 <div className="w-full flex justify-between items-center flex-row my-2">
                     <h1 className="text-slate-500">Product Quantity</h1>

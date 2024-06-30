@@ -23,8 +23,15 @@ export default function Page({ params }: number | any) {
     const { address } = useAccount()
     const result = useReadContract({
         abi: base_sepolia_storage,
-        address: "0xc232b61eefaE6933E77E681e056FF268e39De3a3",
+        address: "0x93Fc58B6A8BA282d339e6e34164488b3537401cC",
         functionName: 'getAddrOf',
+        args: [address]
+      })
+    
+      const fetchName = useReadContract({
+        abi: base_sepolia_storage,
+        address: "0x93Fc58B6A8BA282d339e6e34164488b3537401cC",
+        functionName: 'getNameOf',
         args: [address]
       })
 
@@ -44,6 +51,8 @@ export default function Page({ params }: number | any) {
         metadata: { //optional charge metadata
             product_id: product[0].id,
             product_img: product[0].image,
+            product_name: product[0].name,
+            cust_name: fetchName?.data,
             wallet_address: address,
             address: result?.data,
             qty: counter,

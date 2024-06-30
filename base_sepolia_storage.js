@@ -16,6 +16,24 @@ export const base_sepolia_storage = [
 		"inputs": [
 			{
 				"internalType": "string",
+				"name": "value",
+				"type": "string"
+			}
+		],
+		"name": "addName",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "payment_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "id",
 				"type": "string"
 			},
@@ -116,10 +134,34 @@ export const base_sepolia_storage = [
 				"type": "address"
 			}
 		],
+		"name": "getNameOf",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "wallet",
+				"type": "address"
+			}
+		],
 		"name": "getPaymentOf",
 		"outputs": [
 			{
 				"components": [
+					{
+						"internalType": "string",
+						"name": "payment_id",
+						"type": "string"
+					},
 					{
 						"internalType": "string",
 						"name": "id",

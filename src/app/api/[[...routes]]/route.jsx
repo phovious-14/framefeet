@@ -28,17 +28,15 @@ app.frame('/:id/:wallet', async (c) => {
     
   const { buttonValue, inputText, status, frameData } = c
 
-  const data = c.req.raw.url.split("/")
-  let id = data[data.length-2]
-
+  let id = c.req.param("id")
   const crypto = new NextCrypto('qwerty');
-  let wallet = await crypto.decrypt(data[data.length-1])
+  let wallet = await crypto.decrypt(c.req.param("wallet"))
 
-  // if(wallet != frameData.address) {
-  //   return c.res({
-  //     image: <Image src={product[0].image} alt="" height="100%" objectFit='cover' />
-  //   })
-  // }
+  if(wallet != frameData.address) {
+    return c.res({
+      image: <Image src={product[0].image} alt="" height="100%" objectFit='cover' />
+    })
+  }
 
   const product = store.filter(item => item.id == id)
 

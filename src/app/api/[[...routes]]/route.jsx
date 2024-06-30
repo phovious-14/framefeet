@@ -75,7 +75,7 @@ app.frame('/share/:id', async (c) => {
 
   const product = store.filter(item => item.id == res?.data?.metadata?.product_id)
 
-  const msg = `hello ppl, ${frameData?.address} ${res?.data?.metadata?.cust_name} just bought brand new 🤩 ${product[0]?.name}`
+  const msg = `hello ppl, ${res?.data?.metadata?.cust_name} just bought brand new 🤩 ${product[0]?.name}`
 
   return c.res({
     image: (<div style={{

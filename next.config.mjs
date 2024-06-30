@@ -11,8 +11,7 @@ const nextConfig = {
         hostname: "**",
       },
     ]
-  },
-  distDir: 'build',
+  }
 };
 
 export default nextConfig;

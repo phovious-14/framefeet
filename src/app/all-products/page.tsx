@@ -38,7 +38,7 @@ export default function Page() {
 
     const handlePromote = () => {
         console.log(id, msg);
-        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/promote/${id}/${msg}`)        
+        navigator.clipboard.writeText(`https://framefeet.vercel.app/api/promote/${id}/${JSON.stringify(msg)}`)        
     }
 
     return  <div className="min-h-screen bg-white w-screen p-2">

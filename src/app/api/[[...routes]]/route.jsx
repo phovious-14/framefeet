@@ -37,7 +37,7 @@ app.frame('/:id/:wallet', async (c) => {
 
   if(wallet != frameData.address) {
     return c.res({
-      image: <div style={{color:"whte"}}><div>{wallet}</div><div>{frameData.address}</div></div>
+      image: <Image src={product[0].image} alt="" height="100%" objectFit='cover' />
     })
   }
   const msg = ` hello ppl, just bought brand new 🤩 ${product[0].name} worth $${frameData.address} USDC`

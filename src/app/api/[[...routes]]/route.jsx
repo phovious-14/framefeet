@@ -8,6 +8,7 @@ import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
 import store from '../../../store';
 import { createSystem } from 'frog/ui'
+import NextCrypto from 'next-crypto';
  
 const { Image } = createSystem()
 
@@ -22,13 +23,22 @@ const app = new Frog({
 // Uncomment to use Edge Runtime
 // export const runtime = 'edge'
 
-app.frame('/:id', (c) => {
+app.frame('/:id/:wallet', (c) => {
 
     
   const { buttonValue, inputText, status, frameData } = c
 
   const data = c.req.raw.url.split("/")
-  let id = data[data.length-1]
+  let id = data[data.length-2]
+
+  const crypto = new NextCrypto('qwerty');
+  let wallet = crypto.decrypt(data[data.length-1])
+
+  if(wallet != frameData.address) {
+    return c.res({
+      image: <Image src={product[0].image} alt="" height="100%" objectFit='cover' />
+    })
+  }
 
   const product = store.filter(item => item.id == id)
 

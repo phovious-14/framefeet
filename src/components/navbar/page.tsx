@@ -2,8 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useAccount } from "wagmi";
 
 export default function Navbar() {
+
+    const {address} = useAccount()
+
     return <div className="fixed top-0 w-screen bg-white flex justify-between items-center flex-row px-20 py-4 z-40">
         <div className="flex justify-start items-center flex-row">
 
@@ -24,6 +28,9 @@ export default function Navbar() {
                 <Link href="/profile" className="mx-4">
                     Profile
                 </Link>
+                {address == "0xF13cc670E528cD7c6fDC9420f39D725E9375F98A" && <Link href="/all-products" className="mx-4 border p-2 rounded-md bg-yellow-300 text-slate-800">
+                    Admin
+                </Link>}
             </div>
         </div>
         
